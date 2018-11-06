@@ -4,12 +4,19 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import common.ServerContext;
 
 public class WebServer {
 	private ServerSocket server;
+	private ExecutorService threadPool;
 	public WebServer() {
 		try {
-			server = new ServerSocket(8080);
+			server = new ServerSocket(ServerContext.port);
+			threadPool = Executors.newFixedThreadPool(ServerContext.maxThread);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("服务器启动失败");
@@ -24,6 +31,7 @@ public class WebServer {
 //				OutputStream out = socket.getOutputStream();
 //				out.write("Hello Luke".getBytes());
 //				out.flush();
+				/*
 				PrintStream printStream = new PrintStream(socket.getOutputStream());
 				String data = "Hello Luke";
 				printStream.println("HTTP/1.1 200 OK");
@@ -32,6 +40,8 @@ public class WebServer {
 				printStream.println("");
 				printStream.write(data.getBytes());
 				printStream.flush();
+				*/
+				threadPool.execute(new ClientHandler(socket));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

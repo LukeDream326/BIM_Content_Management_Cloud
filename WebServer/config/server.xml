@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server>
+	<service>
+		<connector
+			protocol = "HTTP/1.1"
+			port = "8080"
+			maxThread = "100"
+		/>
+		<webroot>"webapps"</webroot>
+	</service>
+</server>
