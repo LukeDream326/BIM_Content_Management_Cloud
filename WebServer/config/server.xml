@@ -6,7 +6,7 @@
 			port = "8080"
 			maxThread = "100"
 		/>
-		<webroot>"webapps"</webroot>
+		<webroot>webapps</webroot>
 	</service>
 	<type-mappings>
 		<type-mapping ext = "html" type = "text/html"/>

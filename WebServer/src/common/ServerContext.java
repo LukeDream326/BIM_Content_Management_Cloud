@@ -1,5 +1,6 @@
 package common;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,13 +32,12 @@ public class ServerContext {
 			
 			webRoot = rootelement.element("service").element("webroot").getText();
 			
+			types = new HashMap<String, String>();
 			List<Element> list = rootelement.element("type-mappings").elements();
-			
 			for (Element element : list) {
 				types.put(element.attributeValue("ext"), element.attributeValue("type"));
 			}
 		} catch (DocumentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

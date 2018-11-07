@@ -28,6 +28,7 @@ public class WebServer {
 			while (true) {
 				System.out.println("等待客户端连接");
 				Socket socket = server.accept();
+				System.out.println(socket);
 //				OutputStream out = socket.getOutputStream();
 //				out.write("Hello Luke".getBytes());
 //				out.flush();

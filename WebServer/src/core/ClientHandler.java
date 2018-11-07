@@ -44,7 +44,6 @@ public class ClientHandler implements Runnable {
 				httpResponse.setStatus(HttpContext.STATUS_CODE_OK);
 				httpResponse.setContentType(getContentTypeByFile(file));
 				httpResponse.setContentLength((int)file.length());
-				
 				PrintStream printStream = new PrintStream(httpResponse.getOutputSteam());
 				
 				BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(file));
