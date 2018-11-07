@@ -1,5 +1,8 @@
 package common;
 
+import java.util.List;
+import java.util.Map;
+
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
@@ -10,6 +13,8 @@ public class ServerContext {
 	public static int port;
 	public static int maxThread;
 	public static String webRoot;
+	public static Map<String, String> types;
+	
 	static {
 		init();
 	}
@@ -24,7 +29,13 @@ public class ServerContext {
 			port = Integer.parseInt(connelement.attributeValue("port"));
 			maxThread = Integer.parseInt(connelement.attributeValue("maxThread"));
 			
-			webRoot = rootelement.element("service").element("webroot");
+			webRoot = rootelement.element("service").element("webroot").getText();
+			
+			List<Element> list = rootelement.element("type-mappings").elements();
+			
+			for (Element element : list) {
+				types.put(element.attributeValue("ext"), element.attributeValue("type"));
+			}
 		} catch (DocumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

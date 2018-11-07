@@ -8,4 +8,11 @@
 		/>
 		<webroot>"webapps"</webroot>
 	</service>
+	<type-mappings>
+		<type-mapping ext = "html" type = "text/html"/>
+		<type-mapping ext = "jpg" type = "image/jpeg"/>
+		<type-mapping ext = "png" type = "image/png"/>
+		<type-mapping ext = "gif" type = "image/gif"/>
+		<type-mapping ext = "ico" type = "image/ico"/>
+	</type-mappings>
 </server>

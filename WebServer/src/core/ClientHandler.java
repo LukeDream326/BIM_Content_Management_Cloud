@@ -42,7 +42,7 @@ public class ClientHandler implements Runnable {
 //				httpResponse.setStatus(200);
 //				httpResponse.setContentLength((int)file.length());
 				httpResponse.setStatus(HttpContext.STATUS_CODE_OK);
-				httpResponse.setContentType("text/html");
+				httpResponse.setContentType(getContentTypeByFile(file));
 				httpResponse.setContentLength((int)file.length());
 				
 				PrintStream printStream = new PrintStream(httpResponse.getOutputSteam());
@@ -58,6 +58,12 @@ public class ClientHandler implements Runnable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private String getContentTypeByFile(File file) {
+		String filename = file.getName();
+		String ext = filename.substring(filename.lastIndexOf(".") + 1);
+		return ServerContext.types.get(ext);
 	}
 
 }
